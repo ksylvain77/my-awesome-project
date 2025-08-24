@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """
-hello world app
-simple flask hello world app
+Darth Vader Threat Generator
+Flask app that displays Imperial threats from the Dark Side
 
-Entry point for the hello world app application.
+Entry point for the Darth Vader threat generator application.
 """
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import os
 import sys
 from pathlib import Path
@@ -15,7 +15,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent / "modules"))
 
 # Import your modules here
-from core import get_status
+from core import get_random_threat, get_threat_count
 from utils import get_timestamp
 
 app = Flask(__name__)
@@ -25,35 +25,43 @@ def health():
     """Health check endpoint"""
     return jsonify({
         "status": "healthy",
-        "service": "hello_world_app",
+        "service": "vader_threat_generator",
         "timestamp": get_timestamp()
     })
 
 @app.route('/')
 def home():
-    """Home endpoint"""
-    status = get_status()
+    """Main threat display page"""
+    threat_data = get_random_threat()
+    return render_template('index.html', 
+                         threat=threat_data['threat'],
+                         threat_count=get_threat_count())
+
+@app.route('/api/threat')
+def api_threat():
+    """API endpoint for getting a random threat"""
+    return jsonify(get_random_threat())
+
+@app.route('/api/threat/count')
+def api_threat_count():
+    """API endpoint for threat count"""
     return jsonify({
-        "message": "Welcome to hello world app",
-        "description": "simple flask hello world app",
-        "status": status,
-        "endpoints": {
-            "health": "/health",
-            "home": "/",
-            "api_docs": "/api"
-        }
+        "total_threats": get_threat_count(),
+        "service": "vader_threat_generator"
     })
 
 @app.route('/api')
 def api_docs():
     """API documentation endpoint"""
     return jsonify({
-        "name": "hello world app API",
+        "name": "Darth Vader Threat Generator API",
         "version": "0.1.0",
-        "description": "simple flask hello world app",
+        "description": "Imperial threat delivery system",
         "endpoints": [
-            {"path": "/", "method": "GET", "description": "Home page"},
+            {"path": "/", "method": "GET", "description": "Main threat display page"},
             {"path": "/health", "method": "GET", "description": "Health check"},
+            {"path": "/api/threat", "method": "GET", "description": "Get random threat"},
+            {"path": "/api/threat/count", "method": "GET", "description": "Get threat count"},
             {"path": "/api", "method": "GET", "description": "API documentation"}
         ]
     })
@@ -62,8 +70,9 @@ if __name__ == '__main__':
     port = int(os.getenv('PORT', 5000))
     debug = os.getenv('DEBUG', 'False').lower() == 'true'
     
-    print(f"🚀 Starting hello world app on port {port}")
+    print(f"⚫ Starting Darth Vader Threat Generator on port {port}")
     print(f"🌐 Server: http://localhost:5000")
     print(f"🔍 Health check: http://localhost:5000/health")
+    print(f"⚔️ Threat API: http://localhost:5000/api/threat")
     
     app.run(host='0.0.0.0', port=port, debug=debug)

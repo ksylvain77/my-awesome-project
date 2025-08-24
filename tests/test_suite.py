@@ -49,13 +49,29 @@ class TestSuite:
         
         # DRY configuration - customize for your project
         backend_tests = {
-            "core_function": {
-                "description": "Test core functionality",
-                "module": "modules.core",  # Customize
-                "function": "get_status",   # Customize
+            "threat_generation": {
+                "description": "Test random threat generation",
+                "module": "modules.core",
+                "function": "get_random_threat",
                 "assertions": [
-                    "assert 'status' in result",
-                    "assert result['status'] == 'running'"
+                    "assert 'threat' in result",
+                    "assert 'source' in result",
+                    "assert result['source'] == 'Darth Vader'",
+                    "assert 'empire' in result",
+                    "assert result['empire'] == 'Galactic Empire'",
+                    "assert 'threat_level' in result",
+                    "assert result['threat_level'] == 'Imperial'",
+                    "assert 'timestamp' in result"
+                ]
+            },
+            "threat_count": {
+                "description": "Test threat pool count",
+                "module": "modules.core",
+                "function": "get_threat_count",
+                "assertions": [
+                    "assert isinstance(result, int)",
+                    "assert result > 0",
+                    "assert result >= 10"  # We have 15 threats
                 ]
             },
             # Add more backend tests here
@@ -97,7 +113,15 @@ class TestSuite:
         api_tests = {
             "health_endpoint": {
                 "endpoint": "/health",
-                "expected_fields": ["status"]  # Customize
+                "expected_fields": ["status", "service", "timestamp"]
+            },
+            "threat_endpoint": {
+                "endpoint": "/api/threat",
+                "expected_fields": ["threat", "source", "empire", "threat_level", "timestamp"]
+            },
+            "threat_count_endpoint": {
+                "endpoint": "/api/threat/count",
+                "expected_fields": ["total_threats", "service"]
             },
             # Add more API tests here
         }
@@ -146,13 +170,39 @@ class TestSuite:
         
         # Test data contracts between API and frontend
         contract_tests = {
-            "main_contract": {
+            "health_contract": {
                 "api_endpoint": "/health",
                 "expected_structure": {
-                    "status": "string"  # Customize
+                    "status": "string",
+                    "service": "string",
+                    "timestamp": "string"
                 },
                 "frontend_expectations": [
-                    "data.status"  # Customize
+                    "data.status"
+                ]
+            },
+            "threat_contract": {
+                "api_endpoint": "/api/threat",
+                "expected_structure": {
+                    "threat": "string",
+                    "source": "string", 
+                    "empire": "string",
+                    "threat_level": "string",
+                    "timestamp": "string"
+                },
+                "frontend_expectations": [
+                    "data.threat",
+                    "data.source"
+                ]
+            },
+            "threat_count_contract": {
+                "api_endpoint": "/api/threat/count",
+                "expected_structure": {
+                    "total_threats": "int",
+                    "service": "string"
+                },
+                "frontend_expectations": [
+                    "data.total_threats"
                 ]
             },
             # Add more contract tests here

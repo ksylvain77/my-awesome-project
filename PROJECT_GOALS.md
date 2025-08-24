@@ -6,28 +6,31 @@ _Captured from discovery conversation - 2025-08-24_
 
 ### The Idea
 
-**What it is**: simple flask hello world app
-**What it does**: _[AI fills this based on conversation]_
+**What it is**: Darth Vader Threatening Flask App
+**What it does**: Presents a screen where Darth Vader threatens the user
 
 ### Core Features
 
-1. _[Main feature from discovery]_
-2. _[Second feature from discovery]_
-3. _[Third feature from discovery]_
+1. **Random Threat Generator** - Display a random Darth Vader threat from a pool
+2. **Get New Threat Button** - User can click to pull a new random threat
+3. **Clean Display** - Present the threat in a Vader-themed interface
 
 ### Technical Stuff
 
 **Framework**: Flask
-**Database**: _[If needed - AI fills based on conversation]_
-**APIs/Integrations**: _[AI fills if any mentioned]_
+**Styling**: Black/red Imperial theme
+**Images**: Vader and Death Star visuals (free/generated)
+**Database**: None needed (threats stored in code)
 
 ### Goals
 
-**Learning**: _[What you want to learn from building this]_
-**Problem Solving**: _[What problem this solves]_
-**Timeline**: _[When you want it done - if mentioned]_
+**Learning**: Test AI-native template effectiveness for rapid development
+**Problem Solving**: Evaluate template workflow, automation, and AI collaboration patterns
+**Timeline**: Focus on development velocity and template friction points
 
 ## Next Steps
+
+✅ Discovery complete - ready for ROADMAP creation and development phases
 
 1. AI creates development roadmap
 2. Start building Phase 1

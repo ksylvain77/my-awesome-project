@@ -1,27 +1,57 @@
 """
-hello world app - Core Module
-Core business logic
+Darth Vader Threat Generator - Core Module
+Core business logic for Imperial threats
 
-This module contains the core business logic for hello world app.
+This module contains the core business logic for the Darth Vader threat generator.
 """
 
+import random
 from datetime import datetime
-from typing import Dict, Any
+from typing import Dict, Any, List
 
-def get_status() -> Dict[str, Any]:
+# Imperial Threat Pool
+VADER_THREATS = [
+    "I find your lack of faith disturbing.",
+    "You underestimate the power of the Dark Side.",
+    "Your defiance will be your downfall.",
+    "The Emperor is not as forgiving as I am.",
+    "You have failed me for the last time.",
+    "Resistance is futile. You will join us or die.",
+    "Your rebel friends will share your fate.",
+    "The dark side is stronger. Much stronger.",
+    "You are beaten. It is useless to resist.",
+    "Your destiny lies with me, young one.",
+    "The circle is now complete.",
+    "You will learn the true meaning of suffering.",
+    "Your weakness betrays you. Your faith in your friends is yours!",
+    "The Force is strong with you, but you are not a Jedi yet.",
+    "Perhaps you refer to the imminent attack of your rebel fleet?"
+]
+
+def get_random_threat() -> Dict[str, Any]:
     """
-    Get the current application status
+    Get a random Darth Vader threat
     
     Returns:
-        Dict containing app status information
+        Dict containing threat data and metadata
     """
+    threat = random.choice(VADER_THREATS)
     return {
-        "status": "running",
-        "service": "hello_world_app",
-        "version": "0.1.0",
-        "uptime": "active",
-        "last_updated": "2025-01-01"
+        "threat": threat,
+        "source": "Darth Vader",
+        "empire": "Galactic Empire",
+        "threat_level": "Imperial",
+        "timestamp": datetime.now().isoformat()
     }
+
+def get_threat_count() -> int:
+    """
+    Get total number of available threats
+    
+    Returns:
+        Number of threats in the pool
+    """
+    return len(VADER_THREATS)
 
 def process_data(data: Any) -> Dict[str, Any]:
     """
