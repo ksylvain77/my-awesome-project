@@ -258,6 +258,9 @@ class TestSuite:
         # Basic frontend tests - extend with browser automation if needed
         frontend_tests = [
             ("page_load", self._test_page_load),
+            ("imperial_ui_elements", self._test_imperial_ui_elements),
+            ("threat_display", self._test_threat_display),
+            ("interactive_features", self._test_interactive_features),
             # Add more frontend tests here
         ]
         
@@ -294,6 +297,83 @@ class TestSuite:
                 return True, "Main page loaded successfully"
             else:
                 return False, f"HTTP {response.status_code}"
+        except Exception as e:
+            return False, str(e)
+    
+    def _test_imperial_ui_elements(self) -> Tuple[bool, str]:
+        """Test Imperial UI elements are present"""
+        try:
+            response = requests.get(self.base_url, timeout=10)
+            if response.status_code != 200:
+                return False, f"HTTP {response.status_code}"
+            
+            html_content = response.text
+            required_elements = [
+                'IMPERIAL THREAT COMMAND',
+                'vader-helmet',
+                'threat-display',
+                'imperial-button',
+                'GENERATE NEW THREAT'
+            ]
+            
+            missing_elements = []
+            for element in required_elements:
+                if element not in html_content:
+                    missing_elements.append(element)
+            
+            if missing_elements:
+                return False, f"Missing UI elements: {missing_elements}"
+            
+            return True, "All Imperial UI elements present"
+        except Exception as e:
+            return False, str(e)
+    
+    def _test_threat_display(self) -> Tuple[bool, str]:
+        """Test threat is displayed in UI"""
+        try:
+            response = requests.get(self.base_url, timeout=10)
+            if response.status_code != 200:
+                return False, f"HTTP {response.status_code}"
+            
+            html_content = response.text
+            
+            # Check if threat text area exists and has content
+            if 'threatText' not in html_content:
+                return False, "Threat display element not found"
+            
+            # Check if threat count is displayed
+            if 'threatCount' not in html_content:
+                return False, "Threat count element not found"
+            
+            return True, "Threat display elements working"
+        except Exception as e:
+            return False, str(e)
+    
+    def _test_interactive_features(self) -> Tuple[bool, str]:
+        """Test interactive JavaScript features are included"""
+        try:
+            # Test if JavaScript file is accessible
+            js_response = requests.get(f"{self.base_url}/static/js/imperial.js", timeout=10)
+            if js_response.status_code != 200:
+                return False, f"JavaScript file not accessible: HTTP {js_response.status_code}"
+            
+            js_content = js_response.text
+            required_js_features = [
+                'ImperialThreatGenerator',
+                'getNewThreat',
+                'fetch',
+                '/api/threat'
+            ]
+            
+            missing_features = []
+            for feature in required_js_features:
+                if feature not in js_content:
+                    missing_features.append(feature)
+            
+            if missing_features:
+                return False, f"Missing JS features: {missing_features}"
+            
+            return True, "Interactive features implemented"
         except Exception as e:
             return False, str(e)
     

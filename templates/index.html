@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Darth Vader Threat Generator</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/imperial.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="empire-background">
+      <div class="container">
+        <!-- Header -->
+        <header class="imperial-header">
+          <div class="empire-logo">
+            <div class="death-star"></div>
+          </div>
+          <h1 class="imperial-title">IMPERIAL THREAT COMMAND</h1>
+          <div class="subtitle">Galactic Empire • Threat Division</div>
+        </header>
+
+        <!-- Main Threat Display -->
+        <main class="threat-chamber">
+          <div class="vader-section">
+            <div class="vader-helmet">
+              <div class="helmet-outline"></div>
+              <div class="breathing-indicator"></div>
+            </div>
+          </div>
+
+          <div class="threat-display">
+            <div class="threat-frame">
+              <div class="threat-text" id="threatText">{{ threat }}</div>
+              <div class="threat-attribution">— Lord Vader</div>
+            </div>
+          </div>
+
+          <!-- Control Panel -->
+          <div class="control-panel">
+            <button
+              class="imperial-button"
+              id="newThreatBtn"
+              onclick="getNewThreat()"
+            >
+              <span class="button-glow"></span>
+              GENERATE NEW THREAT
+            </button>
+            <div class="threat-stats">
+              <span class="stats-label">THREAT POOL:</span>
+              <span class="stats-value" id="threatCount"
+                >{{ threat_count }}</span
+              >
+              <span class="stats-label">ACTIVE</span>
+            </div>
+          </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="imperial-footer">
+          <div class="empire-seal">⚫</div>
+          <div class="footer-text">
+            By order of the Galactic Empire • All resistance is futile
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/imperial.js') }}"></script>
+  </body>
+</html>

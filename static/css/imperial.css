@@ -1,0 +1,350 @@
+/* Imperial Theme CSS - Darth Vader Threat Generator */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', monospace;
+  background: #000;
+  color: #ff0000;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+.empire-background {
+  background: radial-gradient(circle at 20% 80%, #1a0000 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, #330000 0%, transparent 50%),
+    linear-gradient(45deg, #000 25%, #0a0a0a 25%, #0a0a0a 50%, #000 50%);
+  background-size: 400px 400px;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Header Styles */
+.imperial-header {
+  text-align: center;
+  padding: 40px 0;
+  border-bottom: 2px solid #ff0000;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.empire-logo {
+  margin-bottom: 20px;
+}
+
+.death-star {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 30% 30%, #666 20%, #333 40%, #000 70%);
+  border-radius: 50%;
+  margin: 0 auto;
+  position: relative;
+  box-shadow: 0 0 20px #ff0000, inset 0 0 20px #330000;
+  animation: deathStarGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes deathStarGlow {
+  0% {
+    box-shadow: 0 0 20px #ff0000, inset 0 0 20px #330000;
+  }
+  100% {
+    box-shadow: 0 0 40px #ff6666, inset 0 0 30px #660000;
+  }
+}
+
+.imperial-title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+  margin-bottom: 10px;
+  animation: titlePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes titlePulse {
+  0% {
+    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+  }
+  100% {
+    text-shadow: 0 0 15px #ff0000, 0 0 30px #ff0000, 0 0 45px #ff0000;
+  }
+}
+
+.subtitle {
+  font-size: 1rem;
+  letter-spacing: 2px;
+  color: #cc0000;
+  text-transform: uppercase;
+}
+
+/* Main Threat Chamber */
+.threat-chamber {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 60px 0;
+}
+
+/* Vader Section */
+.vader-section {
+  text-align: center;
+}
+
+.vader-helmet {
+  width: 120px;
+  height: 140px;
+  margin: 0 auto;
+  position: relative;
+  background: linear-gradient(to bottom, #1a1a1a 0%, #000 50%, #1a1a1a 100%);
+  border-radius: 60px 60px 40px 40px;
+  border: 3px solid #333;
+  box-shadow: 0 0 30px #ff0000, inset 0 0 20px #330000;
+  animation: helmetBreathing 4s ease-in-out infinite;
+}
+
+@keyframes helmetBreathing {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 30px #ff0000, inset 0 0 20px #330000;
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px #ff0000, inset 0 0 30px #660000;
+  }
+}
+
+.helmet-outline::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 60px;
+  background: linear-gradient(to bottom, #ff0000 0%, transparent 100%);
+  border-radius: 20px;
+}
+
+.breathing-indicator {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 8px;
+  background: #ff0000;
+  border-radius: 4px;
+  animation: breathingLight 2s ease-in-out infinite;
+}
+
+@keyframes breathingLight {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 15px #ff0000;
+  }
+}
+
+/* Threat Display */
+.threat-display {
+  text-align: center;
+}
+
+.threat-frame {
+  background: linear-gradient(45deg, #1a0000 0%, #000 50%, #1a0000 100%);
+  border: 2px solid #ff0000;
+  border-radius: 10px;
+  padding: 40px 30px;
+  position: relative;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.3), inset 0 0 30px rgba(255, 0, 0, 0.1);
+}
+
+.threat-frame::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #ff0000, #cc0000, #ff0000);
+  border-radius: 10px;
+  z-index: -1;
+  animation: frameGlow 3s linear infinite;
+}
+
+@keyframes frameGlow {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.threat-text {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 10px #ff0000;
+  animation: threatGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes threatGlow {
+  0% {
+    color: #ff0000;
+    text-shadow: 0 0 10px #ff0000;
+  }
+  100% {
+    color: #ff6666;
+    text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000;
+  }
+}
+
+.threat-attribution {
+  font-size: 1rem;
+  color: #cc0000;
+  font-style: italic;
+  letter-spacing: 2px;
+}
+
+/* Control Panel */
+.control-panel {
+  text-align: center;
+}
+
+.imperial-button {
+  background: linear-gradient(45deg, #330000 0%, #ff0000 50%, #330000 100%);
+  border: 2px solid #ff0000;
+  color: #fff;
+  font-family: 'Orbitron', monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 15px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+}
+
+.imperial-button:hover {
+  background: linear-gradient(45deg, #660000 0%, #ff3333 50%, #660000 100%);
+  box-shadow: 0 0 25px #ff0000;
+  transform: translateY(-2px);
+}
+
+.imperial-button:active {
+  transform: translateY(0);
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.imperial-button:hover .button-glow {
+  left: 100%;
+}
+
+.threat-stats {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.stats-label {
+  color: #999;
+}
+
+.stats-value {
+  color: #ff0000;
+  font-weight: 700;
+  margin: 0 10px;
+  text-shadow: 0 0 5px #ff0000;
+}
+
+/* Footer */
+.imperial-footer {
+  text-align: center;
+  padding: 40px 0;
+  border-top: 1px solid #330000;
+  margin-top: 60px;
+}
+
+.empire-seal {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  animation: sealRotate 20s linear infinite;
+}
+
+@keyframes sealRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.footer-text {
+  font-size: 0.8rem;
+  color: #666;
+  letter-spacing: 1px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .threat-chamber {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .imperial-title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .threat-text {
+    font-size: 1.1rem;
+  }
+
+  .vader-helmet {
+    width: 80px;
+    height: 100px;
+  }
+}
