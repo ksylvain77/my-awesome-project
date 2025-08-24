@@ -67,9 +67,22 @@ Currently conducting live template evaluation for a Flask Darth Vader threat gen
 **Impact**: False test failures when port conflicts occur  
 **Recommendation**: Standardize port detection across all scripts
 
----
+### 🚨 **Issue #4: Merge Blocked by Test Coverage False Positives**
 
-## Strengths Observed So Far
+**Severity**: High  
+**Found**: 2025-08-24 during merge attempt  
+**Problem**: Merge automation blocked by test coverage checker reporting false positives
+**Details**:
+
+- Implementation is complete and manually verified working
+- Backend functions tested, API endpoints working, contracts validated
+- Checker reports missing tests for unused utility functions
+- Quality gate blocks valid merges due to template bugs #2 and #3
+
+**Impact**: Template workflow completely blocked, manual intervention required  
+**Recommendation**: Fix test coverage checker or provide override mechanism for false positives
+
+---
 
 ### ✅ **Discovery Process**
 
